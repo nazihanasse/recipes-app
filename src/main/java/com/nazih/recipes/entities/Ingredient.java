@@ -11,6 +11,8 @@ public class Ingredient {
     private String description;
     @ManyToOne
     private Recipe recipe;
+    @OneToOne
+    private UnitOfMeasure unitOfMeasure;
 
     public Ingredient() {
     }
@@ -19,6 +21,19 @@ public class Ingredient {
         this.name = name;
         this.description = description;
         this.recipe = recipe;
+    }
+
+    public Ingredient(String name, String description, UnitOfMeasure unitOfMeasure) {
+        this.name = name;
+        this.description = description;
+        this.unitOfMeasure = unitOfMeasure;
+    }
+
+    public Ingredient(String name, String description, Recipe recipe, UnitOfMeasure unitOfMeasure) {
+        this.name = name;
+        this.description = description;
+        this.recipe = recipe;
+        this.unitOfMeasure = unitOfMeasure;
     }
 
     public Long getId() {
