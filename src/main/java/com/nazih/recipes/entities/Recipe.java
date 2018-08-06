@@ -1,5 +1,7 @@
 package com.nazih.recipes.entities;
 
+import com.nazih.recipes.enumerations.Difficulty;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,12 +19,17 @@ public class Recipe {
     // Long object
     @Lob
     private Byte[] image;
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
     @OneToOne(cascade = CascadeType.ALL)
     private Note note;
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
 
-    public Recipe(Integer prepTime, Integer cookTime, Integer servings, String source, String url, String directions, Byte[] image, Note note) {
+    public Recipe() {
+    }
+
+    public Recipe(Integer prepTime, Integer cookTime, Integer servings, String source, String url, String directions, Byte[] image) {
         this.prepTime = prepTime;
         this.cookTime = cookTime;
         this.servings = servings;
@@ -30,10 +37,6 @@ public class Recipe {
         this.url = url;
         this.directions = directions;
         this.image = image;
-        this.note = note;
-    }
-
-    public Recipe() {
     }
 
     public Long getId() {
@@ -100,11 +103,27 @@ public class Recipe {
         this.image = image;
     }
 
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
     public Note getNote() {
         return note;
     }
 
     public void setNote(Note note) {
         this.note = note;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }
