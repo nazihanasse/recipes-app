@@ -3,6 +3,7 @@ package com.nazih.recipes.entities;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Recipe {
@@ -17,10 +18,13 @@ public class Recipe {
     private String source;
     private String url;
     private String directions;
+    // Long object
+    @Lob
     private Byte[] image;
-
     @OneToOne(cascade = CascadeType.ALL)
     private Note note;
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private List<Ingredient> ingredients;
 
     public Recipe(Integer prepTime, Integer cookTime, Integer servings, String source, String url, String directions, Byte[] image, Note note) {
         this.prepTime = prepTime;
