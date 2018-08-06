@@ -4,6 +4,7 @@ import com.nazih.recipes.enumerations.Difficulty;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -25,6 +26,10 @@ public class Recipe {
     private Note note;
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
+    @ManyToMany
+    @JoinTable(name = "RECIPE_CATEGORIE", joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Categorie> categories;
 
     public Recipe() {
     }
