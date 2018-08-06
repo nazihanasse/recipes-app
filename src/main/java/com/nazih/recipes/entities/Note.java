@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 @Entity
 public class Note {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

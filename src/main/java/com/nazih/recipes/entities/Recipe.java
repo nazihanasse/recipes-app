@@ -1,17 +1,13 @@
 package com.nazih.recipes.entities;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Recipe {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Integer prepTime;
     private Integer cookTime;
     private Integer servings;
